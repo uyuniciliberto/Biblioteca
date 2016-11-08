@@ -1,30 +1,13 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="DAD">
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgPrestamos/clControladorEventosPrestamo.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgPrestamos/clControladorPrestamos.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/clControladorEventosAlumno.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgLibros/clControladorEventosLibros.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgConexion/clConexionSingleton.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgPrestamos/dlgPrestamos.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/dlgAlumnos.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgPrincipal/clControladorEventos.java</file>
-        </group>
-    </open-files>
-</project-private>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="DAD">
             <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgLibros/clControladorLibros.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgLibros/dlgLibros.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/dlgAlumnos.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/clControladorAlumno.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/clControladorEventosAlumno.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgLibros/clControladorEventosLibros.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgPrincipal/clControladorEventos.java</file>
         </group>
     </open-files>
 </project-private>
->>>>>>> 6fa41302360cced7a2318134be91c6ea74d1cfe3
