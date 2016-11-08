@@ -5,6 +5,7 @@
  */
 package pkgAlumnos;
 
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -21,13 +22,14 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
     private dlgAlumnos dialog;
     private clAlumno alumno;
 
-    public clControladorEventosAlumno(frmPrincipal principal) {
-        dialog = new dlgAlumnos(principal, true, this);
+    public clControladorEventosAlumno(boolean seleccionar) {
+        dialog = new dlgAlumnos(new javax.swing.JFrame(), true, this);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
             }
         });
+        dialog.getBtnSeleccionar().setEnabled(seleccionar);
         dialog.setVisible(true);
     }
 
@@ -60,7 +62,8 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
             } else if (e.getActionCommand() == "btnReset") {
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnSeleccionar") {
-                //seleccionar desde prestamos
+                crearAlumno();
+                dialog.dispose();                
             } else {
                 dialog.dispose();
             }
@@ -111,4 +114,8 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
                 || !dialog.getTxtRegistro().getText().equals(""));
     }
 
+    public clAlumno getAlumno() {
+        return alumno;
+    }
+    
 }
