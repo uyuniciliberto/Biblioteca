@@ -1,14 +1,14 @@
 package pkgPrincipal;
 
+import pkgControladorEventos.clControladorEventosPrincipal;
 import javax.swing.JOptionPane;
-import pkgAlumnos.dlgAlumnos;
+import pkgVista.dlgAlumnos;
 
 public class Main {
 
     public static void main(String[] args) {
-        clControladorEventos controladorEventos = new clControladorEventos();
+        clControladorEventosPrincipal controladorEventos = new clControladorEventosPrincipal();
         controladorEventos.iniciarFramePrincipal();
-        System.out.println("funciona?");
     }
 
 }

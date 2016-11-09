@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="DAD">
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgLibros/clControladorLibros.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/clControladorAlumno.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgAlumnos/clControladorEventosAlumno.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgLibros/clControladorEventosLibros.java</file>
-            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgPrincipal/clControladorEventos.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgVistaTabla/clVistaTabla.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgVista/dlgLibros.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgVista/dlgAlumnos.java</file>
+            <file>file:/C:/Users/UyuCilDel/Documents/NetBeansProjects/BaseDeDatos/src/pkgVista/dlgPrestamos.java</file>
         </group>
     </open-files>
 </project-private>
