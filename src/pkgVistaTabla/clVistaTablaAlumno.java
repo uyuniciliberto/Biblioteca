@@ -3,26 +3,17 @@ package pkgVistaTabla;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
-public class clVistaTabla extends AbstractTableModel {
+public class clVistaTablaAlumno extends AbstractTableModel {
 
     ResultSet resultSet;
     ResultSetMetaData resultSetMetaData;
     int numeroColumnas;
     int numeroFilas;
 
-    public clVistaTabla(ResultSet rs) {
-        this.resultSet = rs;
-        try {
-            resultSetMetaData = rs.getMetaData();
-            resultSet.last();
-            numeroFilas = resultSet.getRow();
-            numeroColumnas = resultSetMetaData.getColumnCount();
-        } catch (SQLException ex) {
-        }
+    public clVistaTablaAlumno(clAlumno alumno) {
+        
     }
 
     @Override
