@@ -7,7 +7,8 @@ package pkgObjetos;
 
 public class clAlumno {
 
-    private String dni, nombre, apellido1, apellido2, registro;
+    private String dni, nombre, apellido1, apellido2;
+    private int registro;
 
     public clAlumno() {
         
@@ -45,11 +46,11 @@ public class clAlumno {
         this.apellido2 = apellido2;
     }
 
-    public String getRegistro() {
+    public int getRegistro() {
         return registro;
     }
 
-    public void setRegistro(String registro) {
+    public void setRegistro(int registro) {
         this.registro = registro;
     }
 

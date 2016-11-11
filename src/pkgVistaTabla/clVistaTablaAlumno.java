@@ -1,30 +1,25 @@
 package pkgVistaTabla;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.table.AbstractTableModel;
+import pkgControladorSQL.clControladorAlumno;
 
 public class clVistaTablaAlumno extends AbstractTableModel {
 
-    ResultSet resultSet;
-    ResultSetMetaData resultSetMetaData;
-    int numeroColumnas;
-    int numeroFilas;
+    private clControladorAlumno controladorAlumno = new clControladorAlumno();
 
-    public clVistaTablaAlumno(clAlumno alumno) {
-        
+    public clVistaTablaAlumno(clControladorAlumno controladorAlumno) {
+        this.controladorAlumno=controladorAlumno;
     }
 
     @Override
     public int getRowCount() {
-        return numeroFilas;
-
+        
     }
 
     @Override
     public int getColumnCount() {
-        return numeroColumnas;
+        
     }
 
     @Override
@@ -40,10 +35,6 @@ public class clVistaTablaAlumno extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        try {
-            return resultSetMetaData.getColumnName(column+1);
-        } catch (SQLException ex) {
-            return ex.toString();
-        }
+        
     }
 }

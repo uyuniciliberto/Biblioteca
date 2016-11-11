@@ -6,9 +6,11 @@ import pkgObjetos.clAlumno;
 import pkgConexion.clConexionSingleton;
 
 public class clControladorAlumno {
+    
+    private ResultSet resultadoConsulta;
 
-    public ResultSet getTodosLosAlumnos() throws SQLException {
-        return clConexionSingleton.getInstance().executeQuery("select * from alumnos");
+    public void getTodosLosAlumnos() throws SQLException {
+        resultadoConsulta = clConexionSingleton.getInstance().executeQuery("select * from alumnos");
     }
 
     public void baja(clAlumno alumno) throws SQLException {
@@ -33,7 +35,7 @@ public class clControladorAlumno {
                 + "where registro = " + alumno.getRegistro() + ";");
     }
 
-    public ResultSet Busqueda(clAlumno alumno) throws SQLException{
+    public void Busqueda(clAlumno alumno) throws SQLException{
         String sql = "select * from alumnos where ";
         if (!alumno.getApellido1().equals("")) {
             sql = sql + "apellido1='" + alumno.getApellido1() + "' and ";
@@ -47,11 +49,25 @@ public class clControladorAlumno {
         if(!alumno.getNombre().equals("")){
             sql = sql + "nombre='" + alumno.getNombre() + "' and ";
         }
-        if(!alumno.getRegistro().equals("")){
+        if(!(""+alumno.getRegistro()).equals("")){
             sql = sql + "registro=" + alumno.getRegistro() + " and ";
         }
         System.out.println(sql.substring(0, sql.length()-4));
-        return clConexionSingleton.getInstance().executeQuery(sql.substring(0, sql.length()-4));
+        resultadoConsulta = clConexionSingleton.getInstance().executeQuery(sql.substring(0, sql.length()-4));
+    }
+    
+    public clAlumno getAlumno(int row) throws SQLException{
+        clAlumno alumno = new clAlumno();
+        resultadoConsulta.absolute(row);
+        alumno.setRegistro(resultadoConsulta.getInt(1));
+        alumno.setDni(resultadoConsulta.getString(2));
+        alumno.setNombre(resultadoConsulta.getString(3));
+        alumno.setApellido1(resultadoConsulta.getString(4));
+        alumno.setApellido2(resultadoConsulta.getString(5));
+        return alumno;
     }
 
+    public ResultSet getResultadoConsulta() {
+        return resultadoConsulta;
+    }
 }

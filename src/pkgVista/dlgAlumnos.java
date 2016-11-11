@@ -2,16 +2,19 @@ package pkgVista;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pkgControladorSQL.clControladorAlumno;
 import pkgControladorEventos.clControladorEventosAlumno;
-import pkgVistaTabla.clVistaTabla;
+import pkgVistaTabla.clVistaTablaAlumno;
 
 public class dlgAlumnos extends javax.swing.JDialog {
 
-    private clVistaTabla vistaTabla = null;
+    private clVistaTablaAlumno vistaTabla = null;
+    private clControladorAlumno controladorAlumno;
 
     public dlgAlumnos(java.awt.Frame parent, boolean modal, clControladorEventosAlumno controladorEventosAlumno) {
         super(parent, modal);
@@ -20,8 +23,9 @@ public class dlgAlumnos extends javax.swing.JDialog {
             iniciarActionListener(controladorEventosAlumno);
             activacionBotones();
             iniciarDocumentListener(controladorEventosAlumno);
-            clControladorAlumno controladorAlumnos = new clControladorAlumno();
-            vistaTabla = new clVistaTabla(controladorAlumnos.getTodosLosAlumnos());
+            controladorAlumno = controladorEventosAlumno.getControladorAlumno();
+            controladorAlumno.getTodosLosAlumnos();
+            vistaTabla = new clVistaTablaAlumno(controladorAlumno);
             TablaAlumnos.setModel(vistaTabla);
 
         } catch (SQLException e) {
@@ -60,20 +64,23 @@ public class dlgAlumnos extends javax.swing.JDialog {
         btnSalir.addActionListener(controladorEventosAlumno);
         btnAltas.addActionListener(controladorEventosAlumno);
     }
-
-    public void actualizar() {
+    
+    public void reset(){
         try {
-            clControladorAlumno controladorAlumnos = new clControladorAlumno();
-            vistaTabla = new clVistaTabla(controladorAlumnos.getTodosLosAlumnos());
-            TablaAlumnos.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
+            controladorAlumno.getTodosLosAlumnos();
+        } catch (SQLException ex) {
             imprimirError("Conexion.");
         }
     }
 
-    public void actualizarPor(ResultSet resulSet) {
-        vistaTabla = new clVistaTabla(resulSet);
-        TablaAlumnos.setModel(vistaTabla);
+    public void actualizar() {
+        try {
+            controladorAlumno.getTodosLosAlumnos();
+            vistaTabla = new clVistaTablaAlumno(controladorAlumno);
+            TablaAlumnos.setModel(vistaTabla);
+        } catch (SQLException sQLException) {
+            imprimirError("Conexion.");
+        }
     }
 
     public void imprimirError(String error) {
