@@ -2,20 +2,17 @@ package pkgControladorSQL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pkgConexion.clConexionSingleton;
 import pkgObjetos.clLibros;
 
-/**
- *
- * @author UyuCilDel
- */
 public class clControladorLibros {
     
     private ResultSet resultadoQuery = null;
 
-    public ResultSet getTodosLosLibros() throws SQLException {
+    public void getTodosLosLibros() throws SQLException {
         resultadoQuery = clConexionSingleton.getInstance().executeQuery("select * from libros");
-        return resultadoQuery;
     }
     
      public void baja(clLibros libro) throws SQLException {
@@ -23,12 +20,6 @@ public class clControladorLibros {
     }
 
     public void alta(clLibros libro) throws SQLException {
-        System.out.println("insert into libros (titulo, autor, editorial, asignatura, estado) values ('"
-                + libro.getTitulo()+ "','"
-                + libro.getAutor()+ "','"
-                + libro.getEditorial()+ "','"
-                + libro.getAsignatura()+ "','"
-                + libro.getEstado()+ "');");
         clConexionSingleton.getInstance().actualizar("insert into libros (titulo,autor,editorial,asignatura,estado) values ('"
                 + libro.getTitulo()+ "','"
                 + libro.getAutor()+ "','"
@@ -47,7 +38,7 @@ public class clControladorLibros {
                 + "where codigo = " + libro.getCodigo()+";");
     }
     
-    public ResultSet Busqueda(clLibros libro) throws SQLException{
+    public void Busqueda(clLibros libro) throws SQLException{
         String sql = "select * from libros where ";
         if (!libro.getAsignatura().equals("")) {
             sql = sql + "asignatura='" + libro.getAsignatura()+ "' and ";
@@ -55,7 +46,7 @@ public class clControladorLibros {
         if(!libro.getAutor().equals("")){
             sql = sql + "autor='" + libro.getAutor()+ "' and ";
         }
-        if(!libro.getCodigo().equals("")){
+        if(libro.getCodigo()>=0){
             sql = sql + "codigo='" + libro.getCodigo()+ "' and ";
         }
         if(!libro.getEditorial().equals("")){
@@ -67,8 +58,34 @@ public class clControladorLibros {
         if(!libro.getTitulo().equals("")){
             sql = sql + "titulo='" + libro.getTitulo()+ "' and ";
         }
-        System.out.println(sql.substring(0, sql.length()-4));
-        return clConexionSingleton.getInstance().executeQuery(sql.substring(0, sql.length()-4));
+        resultadoQuery = clConexionSingleton.getInstance().executeQuery(sql.substring(0, sql.length()-4));
+    }
+    
+    public clLibros getLibro(int row) throws SQLException{
+        clLibros libro = new clLibros();
+        resultadoQuery.absolute(row);
+        libro.setCodigo(resultadoQuery.getInt(1));
+        libro.setTitulo(resultadoQuery.getString(2));
+        libro.setAutor(resultadoQuery.getString(3));
+        libro.setEditorial(resultadoQuery.getString(4));
+        libro.setAsignatura(resultadoQuery.getString(5));
+        libro.setEstado(resultadoQuery.getString(6));
+        return libro;
+    }
+    
+    public ResultSet getResultadoConsulta(){
+        return resultadoQuery;
+    }
+    
+    public int calcularRows(){
+        try {
+            if(resultadoQuery.last()){
+                return resultadoQuery.getRow();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(clControladorLibros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
     
 }

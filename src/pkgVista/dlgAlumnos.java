@@ -1,9 +1,6 @@
 package pkgVista;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -64,23 +61,18 @@ public class dlgAlumnos extends javax.swing.JDialog {
         btnSalir.addActionListener(controladorEventosAlumno);
         btnAltas.addActionListener(controladorEventosAlumno);
     }
-    
-    public void reset(){
+
+    public void reset() {
         try {
             controladorAlumno.getTodosLosAlumnos();
-        } catch (SQLException ex) {
+        } catch (SQLException ex) { 
             imprimirError("Conexion.");
         }
     }
 
     public void actualizar() {
-        try {
-            controladorAlumno.getTodosLosAlumnos();
-            vistaTabla = new clVistaTablaAlumno(controladorAlumno);
-            TablaAlumnos.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
-            imprimirError("Conexion.");
-        }
+        vistaTabla = new clVistaTablaAlumno(controladorAlumno);
+        TablaAlumnos.setModel(vistaTabla);
     }
 
     public void imprimirError(String error) {

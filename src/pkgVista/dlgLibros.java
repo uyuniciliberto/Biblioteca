@@ -1,6 +1,5 @@
 package pkgVista;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -8,35 +7,23 @@ import javax.swing.JTextField;
 import pkgControladorEventos.clControladorEventosLibros;
 import pkgControladorSQL.clControladorLibros;
 import pkgVistaTabla.clVistaTabla;
+import pkgVistaTabla.clVistaTablaLibros;
 
 public class dlgLibros extends javax.swing.JDialog {
 
-    private clVistaTabla vistaTabla = null;
+    private clVistaTablaLibros vistaTabla = null;
+    private clControladorLibros controladorLibros;
 
     public dlgLibros(java.awt.Frame parent, boolean modal, clControladorEventosLibros controladorEventosLibros) {
         super(parent, modal);
         try {
             initComponents();
-            btnSalir.addActionListener(controladorEventosLibros);
-            btnAltas.addActionListener(controladorEventosLibros);
-            btnAltas.setEnabled(false);
-            btnBajas.addActionListener(controladorEventosLibros);
-            btnBajas.setEnabled(false);
-            btnBuscar.addActionListener(controladorEventosLibros);
-            btnBuscar.setEnabled(false);
-            btnReset.addActionListener(controladorEventosLibros);
-            btnModificaciones.addActionListener(controladorEventosLibros);
-            btnModificaciones.setEnabled(false);
-            btnSeleccionar.addActionListener(controladorEventosLibros);
-            btnSeleccionar.setEnabled(false);
-            txtAsignatura.getDocument().addDocumentListener(controladorEventosLibros);
-            txtAutor.getDocument().addDocumentListener(controladorEventosLibros);
-            txtCodigo.getDocument().addDocumentListener(controladorEventosLibros);
-            txtEditorial.getDocument().addDocumentListener(controladorEventosLibros);
-            txtEstado.getDocument().addDocumentListener(controladorEventosLibros);
-            txtTitulo.getDocument().addDocumentListener(controladorEventosLibros);
-            clControladorLibros controladorLibros = new clControladorLibros();
-            vistaTabla = new clVistaTabla(controladorLibros.getTodosLosLibros());
+            iniciarDocumentListener(controladorEventosLibros);
+            iniciarActionListener(controladorEventosLibros);
+            activacionBotones();
+            controladorLibros = controladorEventosLibros.getControladorLibros();
+            controladorLibros.getTodosLosLibros();
+            vistaTabla = new clVistaTablaLibros(controladorLibros);
             TablaLibros.setModel(vistaTabla);
         } catch (SQLException e) {
             imprimirError("Conexion.");
@@ -48,19 +35,44 @@ public class dlgLibros extends javax.swing.JDialog {
             btnAltas.setEnabled(false);
         }
     }
+    
+    public void iniciarDocumentListener(clControladorEventosLibros controladorEventosLibros) {
+            txtAsignatura.getDocument().addDocumentListener(controladorEventosLibros);
+            txtAutor.getDocument().addDocumentListener(controladorEventosLibros);
+            txtCodigo.getDocument().addDocumentListener(controladorEventosLibros);
+            txtEditorial.getDocument().addDocumentListener(controladorEventosLibros);
+            txtEstado.getDocument().addDocumentListener(controladorEventosLibros);
+            txtTitulo.getDocument().addDocumentListener(controladorEventosLibros);
+    }
 
-    public void actualizar() {
+    public void activacionBotones() {
+            btnAltas.setEnabled(false);
+            btnBajas.setEnabled(false);
+            btnBuscar.setEnabled(false);
+            btnModificaciones.setEnabled(false);
+            btnSeleccionar.setEnabled(false);
+    }
+
+    public void iniciarActionListener(clControladorEventosLibros controladorEventosLibros) {
+            btnSalir.addActionListener(controladorEventosLibros);
+            btnAltas.addActionListener(controladorEventosLibros);
+            btnBajas.addActionListener(controladorEventosLibros);
+            btnBuscar.addActionListener(controladorEventosLibros);
+            btnReset.addActionListener(controladorEventosLibros);
+            btnModificaciones.addActionListener(controladorEventosLibros);
+            btnSeleccionar.addActionListener(controladorEventosLibros);
+    }
+
+    public void reset() {
         try {
-            clControladorLibros controladorLibros = new clControladorLibros();
-            vistaTabla = new clVistaTabla(controladorLibros.getTodosLosLibros());
-            TablaLibros.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
+            controladorLibros.getTodosLosLibros();
+        } catch (SQLException ex) { 
             imprimirError("Conexion.");
         }
     }
-    
-    public void actualizarPor(ResultSet resulSet){
-        vistaTabla = new clVistaTabla(resulSet);
+
+    public void actualizar() {
+        vistaTabla = new clVistaTablaLibros(controladorLibros);
         TablaLibros.setModel(vistaTabla);
     }
 

@@ -11,13 +11,14 @@ package pkgObjetos;
  */
 public class clLibros {
     
-    private String codigo, titulo, autor, editorial, asignatura, estado;
+    private String titulo, autor, editorial, asignatura, estado;
+    private int codigo;
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 

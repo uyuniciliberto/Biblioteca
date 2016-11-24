@@ -2,6 +2,8 @@ package pkgControladorSQL;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pkgObjetos.clAlumno;
 import pkgConexion.clConexionSingleton;
 
@@ -44,15 +46,14 @@ public class clControladorAlumno {
             sql = sql + "apellido2='" + alumno.getApellido2() + "' and ";
         }
         if(!alumno.getDni().equals("")){
-            sql = sql + "dni='" + alumno.getDni() + "' and ";
+            sql = sql + "dni='" + alumno.getDni() + "' and "; 
         }
         if(!alumno.getNombre().equals("")){
             sql = sql + "nombre='" + alumno.getNombre() + "' and ";
         }
-        if(!(""+alumno.getRegistro()).equals("")){
+        if(alumno.getRegistro()>=0){
             sql = sql + "registro=" + alumno.getRegistro() + " and ";
         }
-        System.out.println(sql.substring(0, sql.length()-4));
         resultadoConsulta = clConexionSingleton.getInstance().executeQuery(sql.substring(0, sql.length()-4));
     }
     
@@ -69,5 +70,16 @@ public class clControladorAlumno {
 
     public ResultSet getResultadoConsulta() {
         return resultadoConsulta;
+    }
+    
+    public int calcularRows(){
+        try {
+            if (resultadoConsulta.last()){
+                return resultadoConsulta.getRow();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(clControladorAlumno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }

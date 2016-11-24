@@ -4,7 +4,6 @@ import pkgVista.dlgPrestamos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import pkgObjetos.clAlumno;
-import pkgControladorEventos.clControladorEventosAlumno;
 
 
 public class clControladorEventosPrestamo implements ActionListener{
@@ -36,6 +35,6 @@ public class clControladorEventosPrestamo implements ActionListener{
         dialog.getTxtApellido2().setText(alumno.getApellido2());
         dialog.getTxtDni().setText(alumno.getDni());
         dialog.getTxtNombre().setText(alumno.getNombre());
-        dialog.getTxtRegistro().setText(alumno.getRegistro());
+       // dialog.getTxtRegistro().setText(alumno.getRegistro());
     }
 }

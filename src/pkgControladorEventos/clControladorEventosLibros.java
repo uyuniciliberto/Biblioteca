@@ -9,30 +9,32 @@ import javax.swing.event.DocumentListener;
 import pkgControladorSQL.clControladorLibros;
 import pkgObjetos.clLibros;
 
-/**
- *
- * @author UyuCilDel
- */
 public class clControladorEventosLibros implements ActionListener, DocumentListener{
     
     private dlgLibros dialog;
     private clLibros libro;
+    private clControladorLibros controladorLibros = new clControladorLibros();
 
-    public clControladorEventosLibros() {
+    public clControladorEventosLibros(boolean seleccionar) {
         dialog = new dlgLibros(new javax.swing.JFrame(), true, this);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
             }
         });
+        dialog.getBtnSeleccionar().setEnabled(seleccionar);
         dialog.setVisible(true);
     } 
     
     public clLibros crearLibro(){
         libro = new clLibros();
+        if(!dialog.getTxtCodigo().getText().equals("")){
+            libro.setCodigo(Integer.parseInt(dialog.getTxtCodigo().getText()));
+        }else{
+            libro.setCodigo(-1);
+        } 
         libro.setAsignatura(dialog.getTxtAsignatura().getText());
         libro.setAutor(dialog.getTxtAutor().getText());
-        libro.setCodigo(dialog.getTxtCodigo().getText());
         libro.setEditorial(dialog.getTxtEditorial().getText());
         libro.setEstado(dialog.getTxtEstado().getText());
         libro.setTitulo(dialog.getTxtTitulo().getText());
@@ -42,23 +44,27 @@ public class clControladorEventosLibros implements ActionListener, DocumentListe
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            clControladorLibros controladorLibros = new clControladorLibros();
             if (e.getActionCommand() == "btnAltas") {
                 controladorLibros.alta(crearLibro());
+                dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnBajas") {
                 controladorLibros.baja(crearLibro());
+                dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnModificaciones") {
                 controladorLibros.modificaciones(crearLibro());
+                dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnBuscar") {
-                clLibros libro = this.crearLibro();
-                dialog.actualizarPor(controladorLibros.Busqueda(libro));
+                controladorLibros.Busqueda(crearLibro());
+                dialog.actualizar();
             } else if (e.getActionCommand() == "btnReset") {
+                dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnSeleccionar") {
-                //seleccionar desde prestamos
+                crearLibro();
+                dialog.dispose();
             } else {
                 dialog.dispose();
             }
@@ -111,6 +117,14 @@ public class clControladorEventosLibros implements ActionListener, DocumentListe
                 || !dialog.getTxtEstado().getText().equals("")
                 || !dialog.getTxtTitulo().getText().equals("")
                 || !dialog.getTxtCodigo().getText().equals(""));
+    }
+    
+    public clLibros getLibro(){
+        return libro;
+    }
+    
+    public clControladorLibros getControladorLibros(){
+        return controladorLibros;
     }
     
 }

@@ -9,10 +9,6 @@ import javax.swing.event.DocumentListener;
 import pkgObjetos.clAlumno;
 import pkgControladorSQL.clControladorAlumno;
 
-/**
- *
- * @author UyuCilDel
- */
 public class clControladorEventosAlumno implements ActionListener, DocumentListener {
 
     private dlgAlumnos dialog;
@@ -32,7 +28,11 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
 
     public clAlumno crearAlumno() {
         alumno = new clAlumno();
-        alumno.setRegistro(Integer.parseInt(dialog.getTxtRegistro().getText()));
+        if(!dialog.getTxtRegistro().getText().equals("")){
+            alumno.setRegistro(Integer.parseInt(dialog.getTxtRegistro().getText()));
+        }else{
+            alumno.setRegistro(-1);
+        }    
         alumno.setNombre(dialog.getTxtNombre().getText());//miau!
         alumno.setDni(dialog.getTxtDni().getText());
         alumno.setApellido1(dialog.getTxtApellido1().getText());
@@ -56,8 +56,7 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
                 dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnBuscar") {
-                clAlumno alumno = this.crearAlumno();
-                controladorAlumno.Busqueda(alumno);
+                controladorAlumno.Busqueda(crearAlumno());
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnReset") {
                 dialog.reset();

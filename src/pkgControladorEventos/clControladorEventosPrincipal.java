@@ -25,7 +25,7 @@ public class clControladorEventosPrincipal implements ActionListener {
         } else if (e.getActionCommand() == "btnPrestamos") {
             clControladorEventosPrestamo controladorEventosPrestamo = new clControladorEventosPrestamo();
         } else if (e.getActionCommand() == "btnLibros") {
-            clControladorEventosLibros controladorEventosLibros = new clControladorEventosLibros();
+            clControladorEventosLibros controladorEventosLibros = new clControladorEventosLibros(false);
         } else {
             System.exit(0);
         }
