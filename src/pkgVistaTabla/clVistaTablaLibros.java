@@ -5,9 +5,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import pkgControladorSQL.clControladorLibros;
+import pkgObjetos.clLibros;
 
 public class clVistaTablaLibros extends AbstractTableModel {
     
+    private int row=-1;
+    private clLibros libro;
     private clControladorLibros controladorLibros = new clControladorLibros();
     private final String[] columnas=new String[]{
         "Titulo",
@@ -35,13 +38,17 @@ public class clVistaTablaLibros extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         try {
+            if(row!=rowIndex){
+                libro = controladorLibros.getLibro(rowIndex + 1);
+                row = rowIndex;
+            }
             switch(columnIndex+1){
-                case 1: return controladorLibros.getLibro(rowIndex+1).getTitulo();
-                case 2: return controladorLibros.getLibro(rowIndex+1).getCodigo();
-                case 3: return controladorLibros.getLibro(rowIndex+1).getAutor();
-                case 4: return controladorLibros.getLibro(rowIndex+1).getEditorial();
-                case 5: return controladorLibros.getLibro(rowIndex+1).getAsignatura();
-                case 6: return controladorLibros.getLibro(rowIndex+1).getEstado();
+                case 1: return libro.getTitulo();
+                case 2: return libro.getCodigo();
+                case 3: return libro.getAutor();
+                case 4: return libro.getEditorial();
+                case 5: return libro.getAsignatura();
+                case 6: return libro.getEstado();
             }
         } catch (SQLException ex) {
             Logger.getLogger(clVistaTablaLibros.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,4 +61,3 @@ public class clVistaTablaLibros extends AbstractTableModel {
         return columnas[column];
     }
 }
-

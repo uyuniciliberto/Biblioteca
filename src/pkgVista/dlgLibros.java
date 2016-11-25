@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pkgControladorEventos.clControladorEventosLibros;
 import pkgControladorSQL.clControladorLibros;
-import pkgVistaTabla.clVistaTabla;
 import pkgVistaTabla.clVistaTablaLibros;
 
 public class dlgLibros extends javax.swing.JDialog {
@@ -407,8 +406,8 @@ public class dlgLibros extends javax.swing.JDialog {
     }//GEN-LAST:event_TablaLibrosMouseClicked
     private void Mostrar_datos(int fila) {
 
-        txtTitulo.setText(String.valueOf(TablaLibros.getValueAt(fila, 1)));
-        txtCodigo.setText(String.valueOf(TablaLibros.getValueAt(fila, 0)));
+        txtTitulo.setText(String.valueOf(TablaLibros.getValueAt(fila, 0)));
+        txtCodigo.setText(String.valueOf(TablaLibros.getValueAt(fila, 1)));
         txtAutor.setText(String.valueOf(TablaLibros.getValueAt(fila, 2)));
         txtEditorial.setText(String.valueOf(TablaLibros.getValueAt(fila, 3)));
         txtAsignatura.setText(String.valueOf(TablaLibros.getValueAt(fila, 4)));
