@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import pkgControladorEventos.clControladorEventosAlumno;
 import pkgControladorEventos.clControladorEventosLibros;
-import pkgControladorEventos.clControladorEventosPrestamo;
+import pkgControladorEventos.clControladorEventosPrestamos;
 
 public class clControladorEventosPrincipal implements ActionListener {
     
@@ -23,7 +23,7 @@ public class clControladorEventosPrincipal implements ActionListener {
         }  else if (e.getActionCommand() == "btnInformes") {
             
         } else if (e.getActionCommand() == "btnPrestamos") {
-            clControladorEventosPrestamo controladorEventosPrestamo = new clControladorEventosPrestamo();
+            clControladorEventosPrestamos controladorEventosPrestamo = new clControladorEventosPrestamos();
         } else if (e.getActionCommand() == "btnLibros") {
             clControladorEventosLibros controladorEventosLibros = new clControladorEventosLibros(false);
         } else {

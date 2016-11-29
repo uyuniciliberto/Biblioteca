@@ -1,44 +1,47 @@
 package pkgVista;
 
-import pkgControladorSQL.clControladorLibros;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import pkgControladorEventos.clControladorEventosPrestamo;
+import pkgControladorEventos.clControladorEventosPrestamos;
 import pkgControladorSQL.clControladorPrestamos;
-import pkgVistaTabla.clVistaTabla;
+import pkgVistaTabla.clVistaTablaPrestamos;
 
 public class dlgPrestamos extends javax.swing.JDialog {
 
-    private clVistaTabla vistaTabla = null;
+    private clVistaTablaPrestamos vistaTabla = null;
+    private clControladorPrestamos controladorPrestamos;
 
-    public dlgPrestamos(java.awt.Frame parent, boolean modal, clControladorEventosPrestamo controladorEventosPrestamo) {
+    public dlgPrestamos(java.awt.Frame parent, boolean modal, clControladorEventosPrestamos controladorEventosPrestamo) {
         super(parent, modal);
         try {
             initComponents();
-            clControladorPrestamos controladorPrestamos = new clControladorPrestamos();
-            btnBuscar.addActionListener(controladorEventosPrestamo);
-            vistaTabla = new clVistaTabla(controladorPrestamos.getTodosLosPrestamos());
+            iniciarActionListener(controladorEventosPrestamo);
+            controladorPrestamos = controladorEventosPrestamo.getControladorPrestamos();
+            controladorPrestamos.getTodosLosPrestamos();
+            vistaTabla = new clVistaTablaPrestamos(controladorPrestamos);
             TablaLibros.setModel(vistaTabla);
         } catch (SQLException e) {
             imprimirError("Conexion.");
         }
     }
 
-    public void actualizar() {
-        try {
-            clControladorLibros controladorLibros = new clControladorLibros();
-            vistaTabla = new clVistaTabla(controladorLibros.getTodosLosLibros());
-            TablaLibros.setModel(vistaTabla);
-        } catch (SQLException sQLException) {
-            imprimirError("Conexion.");
-        }
+    //nya -w-
+    public void iniciarActionListener(clControladorEventosPrestamos controladorEventosPrestamo) {
+        btnBuscar.addActionListener(controladorEventosPrestamo);
     }
 
-    public void actualizarPor(ResultSet resulSet) {
-        vistaTabla = new clVistaTabla(resulSet);
+    public void actualizar() {
+        vistaTabla = new clVistaTablaPrestamos(controladorPrestamos);
         TablaLibros.setModel(vistaTabla);
+    }
+    
+    public void reset(){
+        try {
+            controladorPrestamos.getTodosLosPrestamos();
+        } catch (SQLException ex) { 
+            imprimirError("Conexion.");
+        }
     }
 
     public void imprimirError(String error) {
@@ -203,7 +206,7 @@ public class dlgPrestamos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
     public JTextField getTxtApellido1() {
         return txtApellido1;
     }

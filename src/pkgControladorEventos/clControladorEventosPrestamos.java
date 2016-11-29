@@ -3,15 +3,17 @@ package pkgControladorEventos;
 import pkgVista.dlgPrestamos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import pkgControladorSQL.clControladorPrestamos;
 import pkgObjetos.clAlumno;
 
 
-public class clControladorEventosPrestamo implements ActionListener{
+public class clControladorEventosPrestamos implements ActionListener{
     
     private dlgPrestamos dialog;
     private clAlumno alumno;
+    private clControladorPrestamos controladorPrestamos = new clControladorPrestamos();
     
-    public clControladorEventosPrestamo(){
+    public clControladorEventosPrestamos(){
         dialog = new dlgPrestamos(new javax.swing.JFrame(), true, this);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -35,6 +37,10 @@ public class clControladorEventosPrestamo implements ActionListener{
         dialog.getTxtApellido2().setText(alumno.getApellido2());
         dialog.getTxtDni().setText(alumno.getDni());
         dialog.getTxtNombre().setText(alumno.getNombre());
-       // dialog.getTxtRegistro().setText(alumno.getRegistro());
+        dialog.getTxtRegistro().setText(""+alumno.getRegistro());
+    }
+
+    public clControladorPrestamos getControladorPrestamos() {
+        return controladorPrestamos;
     }
 }
