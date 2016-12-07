@@ -14,34 +14,32 @@ public class dlgPrestamos extends javax.swing.JDialog {
 
     public dlgPrestamos(java.awt.Frame parent, boolean modal, clControladorEventosPrestamos controladorEventosPrestamo) {
         super(parent, modal);
-        try {
-            initComponents();
-            iniciarActionListener(controladorEventosPrestamo);
-            controladorPrestamos = controladorEventosPrestamo.getControladorPrestamos();
-            controladorPrestamos.getTodosLosPrestamos();
-            vistaTabla = new clVistaTablaPrestamos(controladorPrestamos);
-            TablaLibros.setModel(vistaTabla);
-        } catch (SQLException e) {
-            imprimirError("Conexion.");
-        }
+        initComponents();
+        iniciarTextFields();
+        iniciarActionListener(controladorEventosPrestamo);
+        controladorPrestamos = controladorEventosPrestamo.getControladorPrestamos();
+    }
+
+    private void iniciarTextFields() {
+        txtApellido1.setEditable(false);
+        txtApellido2.setEditable(false);
+        txtDni.setEditable(false);
+        txtNombre.setEditable(false);
+        txtRegistro.setEditable(false);
     }
 
     //nya -w-
-    public void iniciarActionListener(clControladorEventosPrestamos controladorEventosPrestamo) {
+    private void iniciarActionListener(clControladorEventosPrestamos controladorEventosPrestamo) {
         btnBuscar.addActionListener(controladorEventosPrestamo);
+        btnBorrar.addActionListener(controladorEventosPrestamo);
+        btnCerrar.addActionListener(controladorEventosPrestamo);
+        btnEditar.addActionListener(controladorEventosPrestamo);
+        btnNuevo.addActionListener(controladorEventosPrestamo);
     }
 
     public void actualizar() {
         vistaTabla = new clVistaTablaPrestamos(controladorPrestamos);
         TablaLibros.setModel(vistaTabla);
-    }
-    
-    public void reset(){
-        try {
-            controladorPrestamos.getTodosLosPrestamos();
-        } catch (SQLException ex) { 
-            imprimirError("Conexion.");
-        }
     }
 
     public void imprimirError(String error) {

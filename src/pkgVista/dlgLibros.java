@@ -411,7 +411,7 @@ public class dlgLibros extends javax.swing.JDialog {
         txtAutor.setText(String.valueOf(TablaLibros.getValueAt(fila, 2)));
         txtEditorial.setText(String.valueOf(TablaLibros.getValueAt(fila, 3)));
         txtAsignatura.setText(String.valueOf(TablaLibros.getValueAt(fila, 4)));
-        txtEstado.setText(String.valueOf(TablaLibros.getValueAt(fila, 4)));
+        txtEstado.setText(String.valueOf(TablaLibros.getValueAt(fila, 5)));
 
     }
     

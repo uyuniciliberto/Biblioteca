@@ -42,4 +42,8 @@ public class clControladorPrestamos {
         }
         return 0;
     }
+    
+    public void setResultSet(int registro) throws SQLException{
+        resultadoQuery = clConexionSingleton.getInstance().executeQuery("select * from prestamos where codAlumno = '"+registro+"'");
+    }
 }
