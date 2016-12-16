@@ -56,8 +56,10 @@ public class clControladorEventosNuevoPrestamo implements ActionListener {
             }
         } else if (e.getActionCommand().equals("btnBuscar")) {
             clControladorEventosLibros controladorEventosLibros = new clControladorEventosLibros(true);
-            libro = controladorEventosLibros.getLibro();
-            generarLibro();
+            if (!(controladorEventosLibros.getLibro()==null)) {
+                libro = controladorEventosLibros.getLibro();
+                generarLibro();
+            }
         } else {
             dialog.dispose();
         }
