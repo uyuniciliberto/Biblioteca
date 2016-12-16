@@ -60,6 +60,7 @@ public class clControladorEventosLibros implements ActionListener, DocumentListe
                 controladorLibros.Busqueda(crearLibro());
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnReset") {
+                resetTextFields();
                 dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnSeleccionar") {
@@ -127,4 +128,12 @@ public class clControladorEventosLibros implements ActionListener, DocumentListe
         return controladorLibros;
     }
     
+    public void resetTextFields(){
+        dialog.getTxtAsignatura().setText("");
+        dialog.getTxtAutor().setText("");
+        dialog.getTxtCodigo().setText("");
+        dialog.getTxtEditorial().setText("");
+        dialog.getTxtEstado().setText("");
+        dialog.getTxtTitulo().setText("");
+    }
 }

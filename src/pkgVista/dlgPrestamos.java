@@ -2,6 +2,7 @@ package pkgVista;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import pkgControladorEventos.clControladorEventosPrestamos;
 import pkgControladorSQL.clControladorPrestamos;
@@ -10,6 +11,7 @@ import pkgVistaTabla.clVistaTablaPrestamos;
 public class dlgPrestamos extends javax.swing.JDialog {
 
     private clVistaTablaPrestamos vistaTabla = null;
+    private int row;
     private clControladorPrestamos controladorPrestamos;
 
     public dlgPrestamos(java.awt.Frame parent, boolean modal, clControladorEventosPrestamos controladorEventosPrestamo) {
@@ -17,6 +19,7 @@ public class dlgPrestamos extends javax.swing.JDialog {
         initComponents();
         iniciarTextFields();
         iniciarActionListener(controladorEventosPrestamo);
+        TablaLibros.addMouseListener(controladorEventosPrestamo);
         controladorPrestamos = controladorEventosPrestamo.getControladorPrestamos();
     }
 
@@ -78,6 +81,11 @@ public class dlgPrestamos extends javax.swing.JDialog {
 
             }
         ));
+        TablaLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaLibrosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaLibros);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -205,6 +213,10 @@ public class dlgPrestamos extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TablaLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaLibrosMouseClicked
+        row = TablaLibros.getSelectedRow();
+    }//GEN-LAST:event_TablaLibrosMouseClicked
+
     public JTextField getTxtApellido1() {
         return txtApellido1;
     }
@@ -244,6 +256,15 @@ public class dlgPrestamos extends javax.swing.JDialog {
     public void setTxtRegistro(JTextField txtRegistro) {
         this.txtRegistro = txtRegistro;
     }
+
+    public JTable getTablaLibros() {
+        return TablaLibros;
+    }   
+
+    public int getRow() {
+        return row;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaLibros;

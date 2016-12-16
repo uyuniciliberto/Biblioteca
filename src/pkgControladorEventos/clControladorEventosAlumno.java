@@ -59,6 +59,7 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
                 controladorAlumno.Busqueda(crearAlumno());
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnReset") {
+                resetTextFields();
                 dialog.reset();
                 dialog.actualizar();
             } else if (e.getActionCommand() == "btnSeleccionar") {
@@ -120,5 +121,13 @@ public class clControladorEventosAlumno implements ActionListener, DocumentListe
 
     public clControladorAlumno getControladorAlumno() {
         return controladorAlumno;
+    }
+    
+    public void resetTextFields(){
+        dialog.getTxtApellido1().setText("");
+        dialog.getTxtApellido2().setText("");
+        dialog.getTxtDni().setText("");
+        dialog.getTxtNombre().setText("");
+        dialog.getTxtRegistro().setText("");
     }
 }

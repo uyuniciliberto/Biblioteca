@@ -1,6 +1,7 @@
 package pkgVista;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pkgControladorEventos.clControladorEventosNuevoPrestamo;
 
@@ -82,6 +83,10 @@ public class dlgNuevoPrestamo extends javax.swing.JDialog {
 
     public void setTxtTitulo(JTextField txtTitulo) {
         this.txtTitulo = txtTitulo;
+    }
+    
+    public void imprimirError(String error) {
+        JOptionPane.showMessageDialog(null, "Error en:" + error);
     }
 
     @SuppressWarnings("unchecked")
