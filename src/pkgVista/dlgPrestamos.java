@@ -1,6 +1,5 @@
 package pkgVista;
 
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;

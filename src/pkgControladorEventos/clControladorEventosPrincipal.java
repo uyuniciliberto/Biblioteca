@@ -3,9 +3,6 @@ package pkgControladorEventos;
 import pkgVista.frmPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import pkgControladorEventos.clControladorEventosAlumno;
-import pkgControladorEventos.clControladorEventosLibros;
-import pkgControladorEventos.clControladorEventosPrestamos;
 
 public class clControladorEventosPrincipal implements ActionListener {
     

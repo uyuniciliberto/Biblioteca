@@ -1,6 +1,5 @@
 package pkgVista;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import pkgControladorEventos.clControladorEventosNuevoPrestamo;
